@@ -62,20 +62,6 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="grid grid-cols-3 gap-6 pt-4 mt-1 border-t border-rule">
-            {[
-              { k: "3+", v: "Years in ML & DS" },
-              { k: "6+", v: "Roles across US & India" },
-              { k: "2", v: "Peer‑reviewed papers" },
-            ].map((s) => (
-              <div key={s.v}>
-                <dt className="font-serif text-xl md:text-2xl">{s.k}</dt>
-                <dd className="text-[10px] uppercase tracking-[0.16em] text-muted mt-1">
-                  {s.v}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
         <motion.figure

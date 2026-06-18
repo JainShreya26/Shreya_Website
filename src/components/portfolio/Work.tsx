@@ -1,7 +1,6 @@
 import { Reveal } from "./Reveal";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useRef, useState } from "react";
 import causalImg    from "@/assets/project-causal.jpg";
 import soccerImg    from "@/assets/project-soccer.jpg";
 import tbImg        from "@/assets/project-tb.jpg";
@@ -105,93 +104,165 @@ const projects: Project[] = [
 function ProjectCard({ p, i }: { p: Project; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
+  const [flipped, setFlipped] = useState(false);
 
-  // Measure scroll relative to this card's natural (pre-sticky) layout position.
-  // Progress keeps advancing even while the card is pinned, giving live parallax
-  // during the sticky phase.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  // Background image — moves at roughly half scroll speed (main depth layer)
-  const imgRange = reduce ? 0 : isMobile ? 30 : 70;
-  const imageY = useTransform(scrollYProgress, [0, 1], [imgRange, -imgRange]);
-
-  // Text block — drifts even more gently (third, slowest layer)
-  const copyRange = reduce ? 0 : isMobile ? 8 : 18;
-  const copyY = useTransform(scrollYProgress, [0, 1], [copyRange, -copyRange]);
+  const bgY   = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 35,  reduce ? 0 : -35]);
+  const cardY = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 75,  reduce ? 0 : -75]);
+  const textY = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 55,  reduce ? 0 : -55]);
 
   return (
-    // Sticky: each card pins at top with increasing z-index so the incoming card
-    // always slides on top of the pinned one below it.
     <div
       ref={ref}
-      style={{
-        position: "sticky",
-        top: 0,
-        height: "100svh",
-        zIndex: i + 1,
-        overflow: "hidden",
-      }}
+      style={{ position: "sticky", top: 0, height: "100svh", zIndex: i + 1, overflow: "hidden" }}
     >
-      {/* Background image — slowest layer */}
-      <motion.img
-        style={{ y: imageY }}
-        src={p.image}
-        alt={p.alt}
-        width={1800}
-        height={1200}
-        loading={i <= 1 ? "eager" : "lazy"}
-        className="absolute -inset-y-20 inset-x-0 h-[calc(100%+10rem)] w-full object-cover will-change-transform"
-      />
+      {/* Layer 1: blurred ambient background */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 will-change-transform">
+        <img
+          src={p.image} alt="" aria-hidden
+          loading={i <= 1 ? "eager" : "lazy"}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ transform: "scale(1.18)", filter: "blur(80px) saturate(0.72)" }}
+        />
+        <div className="absolute inset-0 bg-ink/74" />
+      </motion.div>
 
-      {/* Gradient overlays for legibility */}
-      <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-ink/96 via-ink/55 to-ink/18" />
-      <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-ink/60 via-ink/15 to-transparent" />
+      {/* Desktop two-column layout */}
+      <div className="hidden md:flex h-full items-center gap-14 px-14 lg:gap-16 lg:px-20 xl:gap-20 xl:px-28">
 
-      {/* Top metadata */}
-      <div className="absolute top-6 left-7 right-7 z-[10] flex items-center justify-between md:top-9 md:left-11 md:right-11">
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-canvas/75">
-          {p.index} / {p.category}
-        </span>
-        <span className="font-mono text-[11px] text-canvas/55">{p.year}</span>
-      </div>
+        {/* Left: flippable card (parallax layer 2) */}
+        <motion.div style={{ y: cardY }} className="relative shrink-0 will-change-transform">
+          {/* Perspective wrapper — required for 3-D depth */}
+          <div style={{ perspective: "1200px", width: "min(43vw, 560px)", aspectRatio: "4 / 3" }}>
+            <motion.div
+              initial={false}
+              animate={{ rotateY: flipped ? 180 : 0 }}
+              transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1] }}
+              onClick={() => setFlipped((f) => !f)}
+              style={{ transformStyle: "preserve-3d", width: "100%", height: "100%", position: "relative", cursor: "pointer" }}
+            >
 
-      {/* Main content — middle layer */}
-      <div className="absolute inset-0 z-[10] flex items-end px-7 pb-10 md:px-11 md:pb-16 lg:pb-20">
-        <motion.div style={{ y: copyY }} className="max-w-3xl will-change-transform">
-          <h3 className="font-serif text-4xl leading-[1.02] text-balance text-canvas md:text-6xl lg:text-7xl">
+              {/* ── FRONT: project image ── */}
+              <div
+                className="absolute inset-0 overflow-hidden rounded-2xl shadow-[0_28px_80px_rgba(0,0,0,0.62)]"
+                style={{ backfaceVisibility: "hidden", outline: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                <img
+                  src={p.image} alt={p.alt}
+                  width={1800} height={1200}
+                  loading={i <= 1 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover"
+                />
+                {/* Subtle flip prompt */}
+                <span className="pointer-events-none absolute bottom-3 right-4 select-none font-mono text-[9px] uppercase tracking-widest text-canvas/30">
+                  ↻ skills
+                </span>
+              </div>
+
+              {/* ── BACK: project details on canvas background ── */}
+              <div
+                className="absolute inset-0 overflow-hidden rounded-2xl shadow-[0_28px_80px_rgba(0,0,0,0.62)] bg-canvas flex flex-col p-7 lg:p-9"
+                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", outline: "1px solid rgba(0,0,0,0.06)" }}
+              >
+                {/* Header row */}
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/42">
+                    {p.index} / {p.category}
+                  </p>
+                  <p className="shrink-0 font-mono text-[10px] text-ink/30">{p.year}</p>
+                </div>
+
+                {/* Blurb — full detail here, brief on the right column */}
+                <p className="flex-1 text-[13px] leading-[1.72] text-ink/68">
+                  {p.blurb}
+                </p>
+
+                {/* Skill tags */}
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <li
+                      key={t}
+                      className="rounded-full border border-ink/18 px-3 py-[3px] font-mono text-[10.5px] tracking-wide text-ink/65"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Footer */}
+                <div className="mt-5 flex items-center justify-between">
+                  {p.href ? (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="border-b border-ink/22 pb-px font-mono text-[10px] uppercase tracking-[0.18em] text-ink/50 transition-colors hover:border-ink/50 hover:text-ink/80"
+                    >
+                      View Project ↗
+                    </a>
+                  ) : <span />}
+                  <span className="select-none font-mono text-[9px] uppercase tracking-widest text-ink/22">
+                    ↺ flip
+                  </span>
+                </div>
+              </div>
+
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Right: title + metadata (parallax layer 3) */}
+        <motion.div style={{ y: textY }} className="flex min-w-0 flex-col will-change-transform">
+          <p className="mb-5 font-mono text-[11px] tracking-[0.24em] text-canvas/38">
+            [{p.index}]
+          </p>
+          <h3 className="mb-3 font-serif text-[2.4rem] leading-[1.08] text-balance text-canvas xl:text-[2.8rem]">
             {p.title}
           </h3>
-          <p className="mt-5 max-w-[58ch] text-pretty text-[15px] leading-[1.65] text-canvas/82 md:text-lg">
+          <p className="mb-7 font-mono text-[10px] uppercase tracking-[0.22em] text-canvas/38">
+            {p.category} · {p.year}
+          </p>
+          {/* Short blurb — full version lives on the card back */}
+          <p className="mb-8 max-w-[44ch] line-clamp-3 text-[13.5px] leading-[1.7] text-canvas/58">
             {p.blurb}
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-canvas/25">
+            ← click card for skills
+          </p>
+        </motion.div>
+
+      </div>
+
+      {/* Mobile: image background with text overlay */}
+      <div className="md:hidden h-full">
+        <img
+          src={p.image} alt={p.alt}
+          loading={i <= 1 ? "eager" : "lazy"}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/97 via-ink/55 to-ink/15" />
+        <div className="absolute left-6 right-6 top-7 flex items-center justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-canvas/65">
+            {p.index} / {p.category}
+          </span>
+          <span className="font-mono text-[10px] text-canvas/45">{p.year}</span>
+        </div>
+        <div className="absolute bottom-10 left-6 right-6 z-10">
+          <h3 className="mb-3 font-serif text-3xl leading-snug text-balance text-canvas">{p.title}</h3>
+          <p className="mb-4 line-clamp-2 text-[13px] leading-relaxed text-canvas/65">{p.blurb}</p>
+          <ul className="flex flex-wrap gap-1.5">
             {p.tags.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-canvas/20 bg-canvas/15 px-3 py-1 text-[12px] tracking-wide text-canvas/95"
-              >
+              <li key={t} className="rounded-full border border-canvas/20 bg-canvas/12 px-2.5 py-[3px] text-[10px] tracking-wide text-canvas/88">
                 {t}
               </li>
             ))}
           </ul>
-          {p.href && (
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-canvas px-4 py-2 text-xs font-medium tracking-wide text-ink transition-colors hover:bg-canvas/90"
-            >
-              View Project
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17L17 7" /><path d="M7 7h10v10" />
-              </svg>
-            </a>
-          )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
@@ -202,7 +273,7 @@ export function Work() {
 
   return (
     <section id="work" className="relative">
-      {/* Section header — normal flow, scrolls away before the stack */}
+      {/* Section header — normal flow, scrolls away before the stack begins */}
       <div className="border-y border-rule bg-canvas-alt/60 px-6 py-20 md:px-10 md:py-28">
         <div className="max-w-7xl mx-auto">
           <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -220,8 +291,9 @@ export function Work() {
         </div>
       </div>
 
-      {/* Sticky stack — (total + 1) × 100svh gives the last card a full viewport
-          of dwell time before the next section scrolls in. */}
+      {/* Sticky stack — (total + 1) × 100svh lets the last card fully settle
+          before the next section enters. Each card's z-index is i + 1 so the
+          incoming card always slides on top of the pinned one below it. */}
       <div style={{ height: `${(total + 1) * 100}svh` }}>
         {projects.map((p, i) => (
           <ProjectCard key={p.title} p={p} i={i} />
