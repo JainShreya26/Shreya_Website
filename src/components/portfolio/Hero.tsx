@@ -12,10 +12,10 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative px-6 md:px-10 pt-32 md:pt-36 pb-16 md:pb-20"
+      className="relative px-6 md:px-10 pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
-        <div className="md:col-span-7 flex flex-col gap-3.5">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
+        <div className="md:col-span-8 flex flex-col gap-3.5">
           <h1 className="font-serif text-[clamp(1.6rem,4.1vw,3.75rem)] leading-[1.05] -tracking-[0.01em] text-balance">
             {headlineWords.map((line, i) => (
               <motion.span
@@ -27,7 +27,7 @@ export function Hero() {
                   delay: 0.1 + i * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`inline-block mr-[0.25em] ${line.italic ? "italic text-accent" : ""}`}
+                className={`inline-block mr-[0.25em] ${line.italic ? "italic text-gradient" : ""}`}
               >
                 {line.text}
               </motion.span>
@@ -45,7 +45,8 @@ export function Hero() {
           <div className="flex items-center gap-3">
             <a
               href="#work"
-              className="group inline-flex items-center gap-3 bg-ink text-canvas text-sm py-2.5 pl-3.5 pr-4.5 rounded-full hover:bg-ink-soft transition-colors"
+              style={{ background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }}
+              className="group inline-flex items-center gap-3 text-sm py-2.5 pl-3.5 pr-4.5 rounded-full shadow-[0_10px_30px_-12px_var(--accent)] hover:shadow-[0_14px_34px_-10px_var(--accent)] transition-shadow"
             >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-canvas/60 opacity-75 animate-ping" />
@@ -68,14 +69,18 @@ export function Hero() {
           initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-5 relative"
+          className="md:col-span-4 relative"
         >
-          <div className="relative w-full max-w-[420px] mx-auto md:ml-auto md:mr-0">
-            <div className="absolute -inset-2 border border-rule rounded-sm" aria-hidden />
+          <div className="relative w-[230px] sm:w-[260px] md:w-full md:max-w-[300px] mx-auto md:ml-auto md:mr-0">
+            {/* thin offset accent frame for depth */}
+            <div
+              aria-hidden
+              className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-accent/35"
+            />
             <img
               src={portrait}
               alt="Portrait of Shreya Jain"
-              className="relative w-full aspect-[4/5] object-cover rounded-sm transition-all duration-700"
+              className="relative w-full aspect-[4/5] object-cover rounded-2xl shadow-[0_22px_48px_-26px_rgba(0,0,0,0.5)] ring-1 ring-rule"
               loading="eager"
             />
           </div>
@@ -83,22 +88,31 @@ export function Hero() {
       </div>
 
       {/* Skills marquee */}
-      <div className="mt-12 md:mt-16 border-y border-rule overflow-hidden py-5 md:py-7">
+      <div className="relative mt-12 md:mt-16 border-y border-rule overflow-hidden py-5 md:py-7">
         <div className="animate-marquee whitespace-nowrap flex items-center">
           {[
             "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
             "Causal Inference", "DECI", "DoWhy", "NetworkX", "OpenCV", "MediaPipe",
             "YOLOv8", "spaCy", "LoRA", "Scikit‑learn", "SQL", "Power BI", "Tableau",
             "R", "Time Series", "NLP", "Computer Vision",
-          ].map((s, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-6 px-5 font-serif text-xl md:text-2xl"
-            >
-              <span className={i % 3 === 1 ? "italic text-ink" : "text-ink-soft/60"}>{s}</span>
-              <span className="font-mono text-[10px] text-muted">/</span>
-            </span>
-          ))}
+          ].map((s, i) => {
+            const hues = ["var(--accent)", "var(--accent-2)", "var(--accent-3)", "var(--accent-5)", "var(--accent-4)"];
+            const highlight = i % 3 === 1;
+            return (
+              <span
+                key={i}
+                className="inline-flex items-center gap-6 px-5 font-serif text-xl md:text-2xl"
+              >
+                <span
+                  className={highlight ? "italic" : "text-ink-soft/55"}
+                  style={highlight ? { color: hues[i % hues.length] } : undefined}
+                >
+                  {s}
+                </span>
+                <span className="font-mono text-[10px] text-muted">/</span>
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>

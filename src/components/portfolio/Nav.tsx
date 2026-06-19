@@ -108,7 +108,8 @@ export function Nav() {
               href="/Shreya_Jain_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-2 rounded-full bg-ink text-canvas hover:bg-ink-soft transition-colors"
+              style={{ background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }}
+              className="px-4 py-2 rounded-full shadow-[0_8px_22px_-12px_var(--accent)] hover:shadow-[0_12px_26px_-10px_var(--accent)] transition-shadow"
             >
               Résumé ↗
             </a>

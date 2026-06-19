@@ -6,8 +6,13 @@ export function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      style={{ scaleX: x, transformOrigin: "0% 50%" }}
-      className="fixed top-0 left-0 right-0 h-[2px] bg-ink z-[60]"
+      style={{
+        scaleX: x,
+        transformOrigin: "0% 50%",
+        background:
+          "linear-gradient(90deg, var(--accent), var(--accent-2) 35%, var(--accent-5) 60%, var(--accent-3) 100%)",
+      }}
+      className="fixed top-0 left-0 right-0 h-[3px] z-[60]"
     />
   );
 }

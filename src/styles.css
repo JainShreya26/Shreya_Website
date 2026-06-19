@@ -18,6 +18,10 @@
   --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-accent-5: var(--accent-5);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
@@ -49,8 +53,15 @@
   --muted:            oklch(0.55 0.008 60);
   --muted-foreground: oklch(0.45 0.008 60);
   --rule:             oklch(0.88 0.005 60);
-  --accent:           oklch(0.45 0.005 60);
+
+  /* Signature palette — indigo primary with a supporting spectrum.
+     Tuned for AA contrast on the warm canvas while staying refined. */
+  --accent:           oklch(0.52 0.17 282);   /* indigo / violet */
   --accent-foreground: oklch(0.985 0.003 80);
+  --accent-2:         oklch(0.58 0.11 205);   /* teal */
+  --accent-3:         oklch(0.60 0.17 24);    /* coral */
+  --accent-4:         oklch(0.64 0.13 65);    /* amber */
+  --accent-5:         oklch(0.56 0.12 162);   /* emerald */
 
   --background: var(--canvas);
   --foreground: var(--ink);
@@ -79,8 +90,13 @@
   --muted:            oklch(0.50 0.008 60);
   --muted-foreground: oklch(0.55 0.008 60);
   --rule:             oklch(0.24 0.007 60);
-  --accent:           oklch(0.75 0.01 60);
+
+  --accent:           oklch(0.74 0.15 285);   /* indigo / violet */
   --accent-foreground: oklch(0.13 0.008 60);
+  --accent-2:         oklch(0.74 0.11 200);   /* teal */
+  --accent-3:         oklch(0.72 0.15 30);    /* coral */
+  --accent-4:         oklch(0.78 0.12 70);    /* amber */
+  --accent-5:         oklch(0.74 0.12 165);   /* emerald */
 }
 
 @layer base {
@@ -94,7 +110,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  ::selection { background: oklch(0.88 0.01 60); color: var(--ink); }
+  ::selection { background: color-mix(in oklab, var(--accent) 28%, transparent); color: var(--ink); }
 }
 
 @layer utilities {
@@ -105,6 +121,25 @@
   .grain {
     background-image: radial-gradient(oklch(0 0 0 / 0.025) 1px, transparent 1px);
     background-size: 3px 3px;
+  }
+  /* Indigo→coral gradient text for signature italic accents */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--accent) 0%,
+      color-mix(in oklab, var(--accent) 55%, var(--accent-3)) 55%,
+      var(--accent-3) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Soft radial color wash for hero / section ambiance */
+  .aurora {
+    background:
+      radial-gradient(42% 55% at 18% 12%, color-mix(in oklab, var(--accent) 22%, transparent) 0%, transparent 70%),
+      radial-gradient(40% 50% at 88% 8%, color-mix(in oklab, var(--accent-2) 20%, transparent) 0%, transparent 70%),
+      radial-gradient(45% 60% at 70% 95%, color-mix(in oklab, var(--accent-3) 16%, transparent) 0%, transparent 72%);
   }
 }
 

@@ -110,7 +110,7 @@ export function Experience() {
       <div className="max-w-7xl mx-auto">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
-            <h2 className="text-[11px] uppercase tracking-[0.22em] text-muted mb-5">
+            <h2 className="text-[11px] uppercase tracking-[0.22em] text-accent mb-5">
               03 / Experience
             </h2>
             <p className="font-serif text-3xl md:text-5xl leading-tight">The journey, so far.</p>
@@ -122,10 +122,13 @@ export function Experience() {
                 role="tab"
                 aria-selected={filter === f.id}
                 onClick={() => setFilter(f.id)}
-                className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] rounded-full transition-colors ${
+                style={
                   filter === f.id
-                    ? "bg-ink text-canvas"
-                    : "text-muted hover:text-ink"
+                    ? { background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }
+                    : undefined
+                }
+                className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] rounded-full transition-colors ${
+                  filter === f.id ? "" : "text-muted hover:text-ink"
                 }`}
               >
                 {f.label}

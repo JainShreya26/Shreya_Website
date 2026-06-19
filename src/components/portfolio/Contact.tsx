@@ -7,13 +7,13 @@ export function Contact() {
     <section id="contact" className="px-6 md:px-10 py-28 md:py-40">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
         <Reveal className="md:col-span-6">
-          <h2 className="text-[11px] uppercase tracking-[0.22em] text-muted mb-8">
+          <h2 className="text-[11px] uppercase tracking-[0.22em] text-accent mb-8">
             06 / Inquiry
           </h2>
           <p className="font-serif text-5xl md:text-7xl leading-[1.02] text-balance">
             Let's build something
             <br />
-            <span className="italic text-accent">worth measuring.</span>
+            <span className="italic text-gradient">worth measuring.</span>
           </p>
           <p className="mt-8 text-ink-soft text-lg max-w-md leading-relaxed">
             Open to AI engineering and data science roles, research
@@ -95,7 +95,8 @@ export function Contact() {
             </label>
             <button
               type="submit"
-              className="group inline-flex items-center gap-3 bg-ink text-canvas text-sm py-3.5 pl-5 pr-6 rounded-full hover:bg-ink-soft transition-colors"
+              style={{ background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }}
+              className="group inline-flex items-center gap-3 text-sm py-3.5 pl-5 pr-6 rounded-full shadow-[0_12px_30px_-12px_var(--accent)] hover:shadow-[0_16px_34px_-10px_var(--accent)] transition-shadow"
             >
               {sent ? "Opening your mail client…" : "Send message"}
               <span className="transition-transform group-hover:translate-x-1">→</span>

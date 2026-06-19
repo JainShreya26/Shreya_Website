@@ -24,8 +24,18 @@ export function Research() {
   return (
     <section id="research" className="px-6 md:px-10 py-28 md:py-40">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-ink text-canvas rounded-2xl p-10 md:p-16 lg:p-20 grain">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div className="relative overflow-hidden bg-ink text-canvas rounded-2xl p-10 md:p-16 lg:p-20 grain">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
+            style={{ background: "color-mix(in oklab, var(--accent) 60%, transparent)" }}
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full opacity-35 blur-3xl"
+            style={{ background: "color-mix(in oklab, var(--accent-3) 60%, transparent)" }}
+          />
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-12">
             <Reveal className="md:col-span-4">
               <h2 className="text-[11px] uppercase tracking-[0.22em] text-canvas/50 mb-5">
                 05 / Publications
@@ -45,7 +55,13 @@ export function Research() {
                 <Reveal key={p.title} delay={i * 0.12}>
                   <li className="border-t border-canvas/10 first:border-t-0 py-10 first:pt-0 group">
                     <div className="flex items-baseline justify-between gap-4 mb-4">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-canvas/60">
+                      <span
+                        className="rounded-full px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em]"
+                        style={{
+                          color: i === 0 ? "var(--accent-4)" : "var(--accent-2)",
+                          background: `color-mix(in oklab, ${i === 0 ? "var(--accent-4)" : "var(--accent-2)"} 16%, transparent)`,
+                        }}
+                      >
                         {p.badge}
                       </span>
                       <span className="text-[10px] font-mono text-canvas/40">
