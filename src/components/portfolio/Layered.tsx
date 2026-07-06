@@ -11,10 +11,16 @@ export function Layered({
   children,
   className = "",
   id,
+  overlap = false,
+  z = 0,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
+  /** Rounds the top and pulls the panel up so it slides over the previous one. */
+  overlap?: boolean;
+  /** Stacking order — higher panels ride over lower ones during the overlap. */
+  z?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -35,12 +41,16 @@ export function Layered({
     <div
       ref={ref}
       id={id}
-      className={`relative ${className}`}
-      style={{ willChange: "transform" }}
+      className={`relative ${overlap ? "-mt-7 md:-mt-14" : ""} ${className}`}
+      style={{ willChange: "transform", zIndex: z }}
     >
       <motion.div
         style={reduce ? undefined : { scale, opacity, y }}
-        className="relative bg-canvas"
+        className={`relative bg-canvas ${
+          overlap
+            ? "rounded-t-[1.75rem] md:rounded-t-[2.75rem] shadow-[0_-26px_56px_-40px_rgba(0,0,0,0.45)]"
+            : ""
+        }`}
       >
         {children}
       </motion.div>

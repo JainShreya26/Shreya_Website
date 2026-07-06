@@ -43,6 +43,7 @@ const projects: Project[] = [
       "Optimized performance with Tableau extracts and pre-aggregated views to keep the dashboard responsive on 3M+ rows, published on Tableau Public as a portfolio piece.",
     ],
     tags: ["SQL", "Python", "Tableau", "ETL", "Feature Engineering"],
+    href: "https://public.tableau.com/app/profile/shreya.jain6648/viz/Sci_Vizualization_Soccer_Analysis/Dashboard1",
   },
   {
     index: "03",
@@ -207,26 +208,15 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
 }
 
 export function Work() {
-  const total = projects.length;
-
   return (
     <section id="work" className="relative bg-canvas">
       {/* Section header */}
       <div className="border-y border-rule bg-canvas-alt/60 px-6 py-20 md:px-10 md:py-28">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-[44ch]">
-              <h2 className="mb-5 text-[11px] uppercase tracking-[0.22em] text-accent">
-                02 / Selected Work
-              </h2>
-              <p className="font-serif text-3xl leading-tight text-balance md:text-4xl">
-                Translating complex datasets into models, dashboards, and decisions that actually
-                ship.
-              </p>
-            </div>
-            <p className="shrink-0 font-mono text-sm text-muted">
-              {String(total).padStart(2, "0")} case studies
-            </p>
+          <Reveal>
+            <h2 className="text-[11px] uppercase tracking-[0.22em] text-accent">
+              Projects
+            </h2>
           </Reveal>
         </div>
       </div>

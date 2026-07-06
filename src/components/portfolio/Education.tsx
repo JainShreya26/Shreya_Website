@@ -60,19 +60,14 @@ export function Education() {
                 style={{ "--c": i === 0 ? "var(--accent)" : "var(--accent-2)" } as CSSProperties}
                 className="group relative overflow-hidden rounded-2xl border border-rule p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_18px_40px_-26px_var(--c)]"
               >
-                {/* tinted wash + colored edge */}
+                {/* tinted wash */}
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-0"
                   style={{ background: "color-mix(in oklab, var(--c) 6%, transparent)" }}
                 />
-                <span
-                  aria-hidden
-                  className="absolute inset-y-0 left-0 w-1.5"
-                  style={{ background: "var(--c)" }}
-                />
 
-                <div className="relative grid gap-6 pl-3 sm:grid-cols-12">
+                <div className="relative grid gap-6 sm:grid-cols-12">
                   <div className="sm:col-span-5">
                     <span
                       className="mb-3 inline-block rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em]"

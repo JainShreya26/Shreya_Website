@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "./Reveal";
+import { Parallax } from "./Parallax";
 
 type Role = {
   role: string;
@@ -106,8 +107,16 @@ export function Experience() {
   const visible = roles.filter((r) => filter === "all" || r.region === filter);
 
   return (
-    <section id="experience" className="px-6 md:px-10 py-28 md:py-40">
-      <div className="max-w-7xl mx-auto">
+    <section id="experience" className="relative overflow-hidden px-6 md:px-10 py-28 md:py-40">
+      <Parallax
+        speed={0.5}
+        className="pointer-events-none absolute -top-10 left-0 select-none md:-left-4"
+      >
+        <span className="font-serif text-[34vw] leading-none text-accent/[0.05] md:text-[18vw]">
+          03
+        </span>
+      </Parallax>
+      <div className="relative max-w-7xl mx-auto">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <h2 className="text-[11px] uppercase tracking-[0.22em] text-accent mb-5">

@@ -68,13 +68,13 @@ function Index() {
       <ScrollProgress />
       <Nav />
       <main className="relative">
-        <Layered><Hero /></Layered>
-        <Layered><About /></Layered>
-        <Layered><Work /></Layered>
-        <Layered><Experience /></Layered>
-        <Layered><Education /></Layered>
-        <Layered><Research /></Layered>
-        <Layered><Contact /></Layered>
+        <Layered z={1}><Hero /></Layered>
+        <Layered overlap z={2}><About /></Layered>
+        <Layered z={3}><Work /></Layered>
+        <Layered overlap z={4}><Experience /></Layered>
+        <Layered z={5}><Education /></Layered>
+        <Layered overlap z={6}><Research /></Layered>
+        <Layered overlap z={7}><Contact /></Layered>
       </main>
     </div>
   );

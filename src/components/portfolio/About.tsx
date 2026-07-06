@@ -35,7 +35,7 @@ export function About() {
         <Reveal delay={0.15} className="md:col-span-5 md:pl-8 md:border-l border-rule">
           <dl className="space-y-7">
             {[
-              ["Based in", "Ann Arbor, MI · open to relocation"],
+              ["Based in", "Ann Arbor, MI"],
               ["Currently", "Data Scientist, Michigan Medicine"],
               ["Education", "MS Data Science, University of Michigan"],
               ["Focus areas", "LLMs · RAG · Causal Inference · Machine Learning · Data Analysis"],

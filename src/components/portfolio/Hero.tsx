@@ -1,5 +1,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import portrait from "@/assets/portrait-shreya.jpg";
+import { Parallax } from "./Parallax";
+import { VelocityMarquee } from "./VelocityMarquee";
+
+const skills = [
+  "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
+  "Causal Inference", "DECI", "DoWhy", "NetworkX", "OpenCV", "MediaPipe",
+  "YOLOv8", "spaCy", "LoRA", "Scikit‑learn", "SQL", "Power BI", "Tableau",
+  "R", "Time Series", "NLP", "Computer Vision",
+];
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -71,7 +80,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-4 relative"
         >
-          <div className="relative w-[230px] sm:w-[260px] md:w-full md:max-w-[300px] mx-auto md:ml-auto md:mr-0">
+          <Parallax speed={0.12} className="relative w-[230px] sm:w-[260px] md:w-full md:max-w-[300px] mx-auto md:ml-auto md:mr-0">
             {/* thin offset accent frame for depth */}
             <div
               aria-hidden
@@ -83,37 +92,13 @@ export function Hero() {
               className="relative w-full aspect-[4/5] object-cover rounded-2xl shadow-[0_22px_48px_-26px_rgba(0,0,0,0.5)] ring-1 ring-rule"
               loading="eager"
             />
-          </div>
+          </Parallax>
         </motion.figure>
       </div>
 
-      {/* Skills marquee */}
-      <div className="relative mt-12 md:mt-16 border-y border-rule overflow-hidden py-5 md:py-7">
-        <div className="animate-marquee whitespace-nowrap flex items-center">
-          {[
-            "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
-            "Causal Inference", "DECI", "DoWhy", "NetworkX", "OpenCV", "MediaPipe",
-            "YOLOv8", "spaCy", "LoRA", "Scikit‑learn", "SQL", "Power BI", "Tableau",
-            "R", "Time Series", "NLP", "Computer Vision",
-          ].map((s, i) => {
-            const hues = ["var(--accent)", "var(--accent-2)", "var(--accent-3)", "var(--accent-5)", "var(--accent-4)"];
-            const highlight = i % 3 === 1;
-            return (
-              <span
-                key={i}
-                className="inline-flex items-center gap-6 px-5 font-serif text-xl md:text-2xl"
-              >
-                <span
-                  className={highlight ? "italic" : "text-ink-soft/55"}
-                  style={highlight ? { color: hues[i % hues.length] } : undefined}
-                >
-                  {s}
-                </span>
-                <span className="font-mono text-[10px] text-muted">/</span>
-              </span>
-            );
-          })}
-        </div>
+      {/* Skills marquee — drifts with scroll velocity */}
+      <div className="relative mt-12 md:mt-16 border-y border-rule py-5 md:py-7">
+        <VelocityMarquee items={skills} />
       </div>
     </section>
   );

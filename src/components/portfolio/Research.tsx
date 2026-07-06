@@ -30,11 +30,6 @@ export function Research() {
             className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
             style={{ background: "color-mix(in oklab, var(--accent) 60%, transparent)" }}
           />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full opacity-35 blur-3xl"
-            style={{ background: "color-mix(in oklab, var(--accent-3) 60%, transparent)" }}
-          />
           <div className="relative grid grid-cols-1 md:grid-cols-12 gap-12">
             <Reveal className="md:col-span-4">
               <h2 className="text-[11px] uppercase tracking-[0.22em] text-canvas/50 mb-5">
