@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import portrait from "@/assets/portrait-shreya.jpg";
 import { Parallax } from "./Parallax";
 import { VelocityMarquee } from "./VelocityMarquee";
+import { HeroFluid } from "./HeroFluid";
 
 const skills = [
   "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
@@ -23,7 +24,9 @@ export function Hero() {
       id="top"
       className="relative px-6 md:px-10 pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden"
     >
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
+      <HeroFluid />
+
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
         <div className="md:col-span-8 flex flex-col gap-3.5">
           <h1 className="font-serif text-[clamp(1.6rem,4.1vw,3.75rem)] leading-[1.05] -tracking-[0.01em] text-balance">
             {headlineWords.map((line, i) => (
@@ -97,7 +100,7 @@ export function Hero() {
       </div>
 
       {/* Skills marquee — drifts with scroll velocity */}
-      <div className="relative mt-12 md:mt-16 border-y border-rule py-5 md:py-7">
+      <div className="relative z-10 mt-12 md:mt-16 border-y border-rule py-5 md:py-7">
         <VelocityMarquee items={skills} />
       </div>
     </section>
