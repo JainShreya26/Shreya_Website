@@ -54,9 +54,9 @@ export function Contact() {
             onSubmit={(e) => {
               e.preventDefault();
               const data = new FormData(e.currentTarget);
-              const subject = encodeURIComponent(`Portfolio inquiry — ${data.get("name")}`);
+              const subject = encodeURIComponent(`Portfolio inquiry - ${data.get("name")}`);
               const body = encodeURIComponent(
-                `${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`,
+                `${data.get("message")}\n\n- ${data.get("name")} (${data.get("email")})`,
               );
               window.location.href = `mailto:shreyadj@umich.edu?subject=${subject}&body=${body}`;
               setSent(true);

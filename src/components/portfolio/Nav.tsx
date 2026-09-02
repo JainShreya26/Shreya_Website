@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
+  { href: "#work", label: "Work" },
   { href: "#education", label: "Education" },
   { href: "#research", label: "Research" },
   { href: "#contact", label: "Contact" },
 ];
 
-const sectionIds = ["top", "work", "experience", "education", "research", "contact"];
+const sectionIds = ["top", "experience", "work", "education", "research", "contact"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -108,7 +108,10 @@ export function Nav() {
               href="/Shreya_Jain_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              style={{ background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }}
+              style={{
+                background: "linear-gradient(120deg, var(--accent), var(--accent-2))",
+                color: "var(--accent-foreground)",
+              }}
               className="px-4 py-2 rounded-full shadow-[0_8px_22px_-12px_var(--accent)] hover:shadow-[0_12px_26px_-10px_var(--accent)] transition-shadow"
             >
               Résumé ↗
@@ -121,12 +124,30 @@ export function Nav() {
               className="w-8 h-8 flex items-center justify-center rounded-full ring-1 ring-rule hover:ring-ink transition-all text-ink-soft hover:text-ink"
             >
               {dark ? (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <circle cx="12" cy="12" r="4" />
                   <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
                 </svg>
               ) : (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                 </svg>
               )}
@@ -141,12 +162,30 @@ export function Nav() {
             className="w-8 h-8 flex items-center justify-center rounded-full ring-1 ring-rule text-ink-soft"
           >
             {dark ? (
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <circle cx="12" cy="12" r="4" />
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
               </svg>
             ) : (
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -181,12 +220,7 @@ export function Nav() {
               </a>
             );
           })}
-          <a
-            href="/Shreya_Jain_Resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="text-ink"
-          >
+          <a href="/Shreya_Jain_Resume.pdf" target="_blank" rel="noreferrer" className="text-ink">
             Résumé ↗
           </a>
         </div>

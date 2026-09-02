@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import LiquidEther from "./LiquidEther";
+import { useIsDark } from "@/hooks/use-is-dark";
+import { cssVarToHex } from "@/lib/css-color";
 
 /**
- * HeroFluid — the hero's ambient background: an animated, interactive version
+ * HeroFluid - the hero's ambient background: an animated, interactive version
  * of the `.aurora` wash, driven by the LiquidEther fluid sim.
  *
  * Design intent is restraint. The stock React Bits demo is a full-bleed neon
@@ -17,7 +19,7 @@ import LiquidEther from "./LiquidEther";
  *  - motion is slowed and softened well below the demo defaults.
  *
  * Falls back to the static `.aurora` gradient for reduced motion, on small
- * screens, and if WebGL is unavailable — the hero keeps its colour either way.
+ * screens, and if WebGL is unavailable - the hero keeps its colour either way.
  */
 
 // Baked equivalents of the accent tokens, used if the runtime read fails.
@@ -26,50 +28,15 @@ const FALLBACK = {
   dark: ["#3ebfc6", "#a29bff", "#f47c6b"],
 };
 
-/**
- * three's Color parser handles hex/rgb/hsl but not `oklch()`, which is how this
- * theme defines every accent. A 1×1 canvas does the conversion for us: it
- * accepts any CSS colour the browser understands and hands back sRGB bytes.
- */
+const TOKENS = ["--accent-2", "--accent", "--accent-3"];
+
 function resolveAccents(isDark: boolean): string[] {
   const fallback = isDark ? FALLBACK.dark : FALLBACK.light;
-  try {
-    const canvas = document.createElement("canvas");
-    canvas.width = canvas.height = 1;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return fallback;
-    const styles = getComputedStyle(document.documentElement);
-    return ["--accent-2", "--accent", "--accent-3"].map((token, i) => {
-      const value = styles.getPropertyValue(token).trim();
-      if (!value) return fallback[i];
-      ctx.fillStyle = "#000";
-      ctx.fillStyle = value;
-      ctx.fillRect(0, 0, 1, 1);
-      const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
-      if (r === 0 && g === 0 && b === 0) return fallback[i]; // unparsed
-      return `#${[r, g, b].map((c) => c.toString(16).padStart(2, "0")).join("")}`;
-    });
-  } catch {
-    return fallback;
-  }
-}
-
-/** Tracks the `dark` class that Nav toggles on <html>. */
-function useIsDark() {
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    const root = document.documentElement;
-    const sync = () => setIsDark(root.classList.contains("dark"));
-    sync();
-    const observer = new MutationObserver(sync);
-    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
-  return isDark;
+  return TOKENS.map((token, i) => cssVarToHex(token, fallback[i]));
 }
 
 // Blooms behind the portrait, thins out across the headline, gone before the
-// skills marquee — so the fluid never competes with text.
+// skills marquee - so the fluid never competes with text.
 const MASK =
   "radial-gradient(78% 72% at 72% 34%, #000 0%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.5) 52%, rgba(0,0,0,0.16) 70%, transparent 84%)";
 
@@ -102,7 +69,7 @@ export function HeroFluid() {
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       style={{ maskImage: MASK, WebkitMaskImage: MASK }}
     >
-      {/* Static base — the fallback on its own, and a faint floor under the sim. */}
+      {/* Static base - the fallback on its own, and a faint floor under the sim. */}
       <div
         className={`aurora absolute inset-0 transition-opacity duration-700 ${
           showFluid ? "opacity-30" : "opacity-100"

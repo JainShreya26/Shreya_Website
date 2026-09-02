@@ -2,7 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef, type ReactNode } from "react";
 
 /**
- * Layered — wraps a section so that as the user scrolls past it,
+ * Layered - wraps a section so that as the user scrolls past it,
  * the section subtly recedes (scale + opacity + slight y-shift),
  * giving the impression that the next section slides up over it.
  * Layout, spacing, and typography are untouched.
@@ -19,7 +19,7 @@ export function Layered({
   id?: string;
   /** Rounds the top and pulls the panel up so it slides over the previous one. */
   overlap?: boolean;
-  /** Stacking order — higher panels ride over lower ones during the overlap. */
+  /** Stacking order - higher panels ride over lower ones during the overlap. */
   z?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export function Layered({
     offset: ["start start", "end start"],
   });
 
-  // Outgoing recede — only kicks in once the section starts leaving the top.
+  // Outgoing recede - only kicks in once the section starts leaving the top.
   // Keep opacity high so content stays legible even on the last section
   // (where the page may rest mid-transition).
   const scale = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, reduce ? 1 : 0.97]);

@@ -5,7 +5,7 @@ const schools = [
   {
     school: "University of Michigan",
     degree: "Master's in Data Science (Statistics)",
-    location: "Ann Arbor, MI · Aug 2023 – May 2025",
+    location: "Ann Arbor, MI · Aug 2023 - May 2025",
     level: "Graduate",
     notes:
       "GSI with tuition waiver (SI 649) · Ross Hackathon ’24 & ’25 · TAMU Healthcare Hackathon.",
@@ -24,14 +24,14 @@ const schools = [
     location: "Pune, India",
     level: "Undergraduate",
     notes:
-      "Event Head — CodeChef & TEDxVIIT · Finance / Sponsorship Lead · Sports Club Representative.",
+      "Event Head - CodeChef & TEDxVIIT · Finance / Sponsorship Lead · Sports Club Representative.",
     courses: [
       "Machine Learning & AI",
       "Discrete Mathematics",
       "OS & Networking",
       "Data Structures & Algorithms",
       "C / C++ / Java / JS / PHP",
-      "Object‑Oriented Programming",
+      "Object-Oriented Programming",
     ],
   },
 ];

@@ -15,84 +15,85 @@ type Role = {
 
 const roles: Role[] = [
   {
-    role: "Research Scientist",
+    role: "AI Research Engineer",
     org: "Michigan Medicine",
-    date: "Mar 2025 — Present",
+    date: "Mar 2025 - Present",
     location: "Ann Arbor, MI",
     region: "us",
     bullets: [
-      "Built a biomedical research assistant integrating Semantic Scholar, Unpaywall, OpenAI, Anthropic, Llama, and MedGemma retrieval and generation pipelines — improved citation coverage by 85%.",
-      "Engineered a cross‑model ranking system benchmarking 4 LLMs on 300+ test queries, enabling data‑driven model selection.",
-      "Implemented smart model routing to dynamically select lightweight models by query type, reducing token costs by 60%.",
-      "Developed an LLM‑driven causal extraction system converting unstructured biomedical text into NetworkX graphs, enabling path analysis via natural‑language queries.",
-      "Automated evaluation of LLM‑generated causal graphs against DECI and LiNGAM baselines using centrality metrics.",
-      "Deployed the platform on Streamlit Cloud with structured logging and progress tracking, cutting debugging time by 40%.",
+      "Deployed a Streamlit AI co-scientist platform spanning ASO, CRISPR, Bioinformatics, Global Health, Biomni, and Causal Reasoning, with GPT/Claude generation and persistent FAISS retrieval.",
+      "Integrated Semantic Scholar, Unpaywall, and curated PDF retrieval, improving Claude’s overall accuracy by 21% and ES-VE classification accuracy by 46% on a balanced 100-variant benchmark.",
+      "Added parallel grounding across 7 biological databases, including ClinVar, Ensembl, UniProt, and ClinicalTrials.gov, raising batch-mode ES-VE accuracy from 0.60 to 0.81 and positive-class precision from 0.15 to 0.33.",
+      "Reduced grounding context by 98.9%, from approximately 242K to 2.7K tokens, using query-aware condensation, lightweight model routing, and safeguards that eliminated context-window overflows.",
+      "Benchmarked 300 gene variants with 2,400 predictions across 4 models and two exon-skipping strategies (ES-RF and ES-VE) using a parallel, resumable, rate-limit-aware evaluation harness.",
+      "Evaluated model performance using precision, recall, specificity, NPV, F1 score, confusion matrices, abstention-aware scoring, ensemble agreement, and provenance audits to detect execution-mode and model-version confounds.",
+      "Developed a deterministic causal-inference engine supporting d-separation, collider detection, backdoor-path analysis, and adjustment-set discovery, with LLM-generated graphs benchmarked against DECI and LiNGAM.",
     ],
     tags: ["RAG", "LangChain", "DECI", "LiNGAM", "NetworkX", "Streamlit"],
   },
   {
-    role: "Data Scientist & NLP",
+    role: "Research Assistant",
     org: "University of Michigan",
-    date: "May — Dec 2024",
+    date: "May - Dec 2024",
     location: "Ann Arbor, MI",
     region: "us",
     bullets: [
-      "Developed a Python data extraction pipeline for structured textbook content, achieving 98% extraction accuracy.",
-      "Extended spaCy NER with 7 domain‑specific entity labels, improving entity recognition accuracy by 75%.",
-      "Built automated data quality checks for schema validation, rule‑based consistency, and outlier detection — saving 2 hours of manual validation per dataset.",
-      "Fine‑tuned GPT‑NER and Llama‑3‑8B using LoRA and quantization for NER, achieving 66% F1 on custom domain entities.",
+      "Built a Python/NLP extraction pipeline combining rule-based parsing, schema-driven processing, and custom spaCy NER (7 domain labels) for historic texts.",
+      "Fine-tuned GPT-based NER and Llama-3-8B with PyTorch, Hugging Face, LoRA, and quantization, reaching 98% extraction accuracy, 75% domain entity recognition, and 66% F1 on specialized entities.",
+      "Wrote comprehensive unit tests and automated validation for outlier detection, extracted outputs, and consistency checks, reducing validation time by two hours per dataset.",
     ],
-    tags: ["Python", "spaCy", "LoRA", "Llama", "NER"],
-  },
-  {
-    role: "Data Analyst",
-    org: "University of Michigan",
-    date: "Jun — Aug 2024",
-    location: "Ann Arbor, MI",
-    region: "us",
-    bullets: [
-      "Built SQL‑based data pipelines to analyze participation trends, driving interventions that increased response rates by 50%.",
-      "Built real‑time Power BI dashboards to track completion metrics, reducing reporting turnaround by 60%.",
-      "Designed reinforcement‑learning‑driven patient engagement games to capture behavioral data, improving retention and feeding downstream predictive models.",
-    ],
-    tags: ["SQL", "Power BI", "RL", "Python"],
+    tags: ["Python", "spaCy", "PyTorch", "LoRA", "Llama"],
   },
   {
     role: "Graduate Student Instructor",
     org: "SI 649 · University of Michigan",
-    date: "Jun — Dec 2024",
+    date: "Aug - Dec 2024",
     location: "Ann Arbor, MI",
     region: "us",
     bullets: [
       "Taught data visualization with Tableau, Plotly, Altair, D3.js, and GenAI tools.",
-      "Led interactive design labs with real‑world datasets; appointment came with full tuition waiver.",
+      "Led interactive design labs with real-world datasets; appointment came with full tuition waiver.",
     ],
     tags: ["Tableau", "D3.js", "Altair", "Plotly"],
   },
   {
+    role: "Research Assistant",
+    org: "University of Michigan",
+    date: "Jun - Aug 2024",
+    location: "Ann Arbor, MI",
+    region: "us",
+    bullets: [
+      "Increased patient response rates from 10% to 68% and eliminated 3 hours of daily reporting by engineering SQL ETL pipelines and real-time Power BI KPI dashboards for participation and completion analytics.",
+      "Enabled predictive engagement modeling across 65 participants by developing reinforcement-learning-based games and behavioral telemetry pipelines for feature engineering, segmentation, and adherence analysis.",
+      "Modeled early identification of at-risk participants by training and evaluating 3 classification models: Logistic Regression, Random Forest, and XGBoost on behavioral data using feature engineering, cross-validation, and ROC-AUC.",
+    ],
+    tags: ["SQL", "Power BI", "RL", "XGBoost"],
+  },
+  {
     role: "Data Science Intern",
     org: "Ministry of Defence · DRDO",
-    date: "Oct 2022 — Jul 2023",
+    date: "Oct 2022 - Jul 2023",
     location: "Pune, India",
     region: "india",
     bullets: [
-      "Built a real‑time pose estimation system using OpenCV and MediaPipe to automate validation of 5 army drill exercises, tested on a custom 7‑subject dataset across varying heights, lighting, and distances.",
-      "Engineered a YOLOv8 preprocessing pipeline with auto‑cropping, improving detection accuracy by 98% and reducing noise.",
-      "Deployed an offline Flask app for the Government, replacing continuous supervision with real‑time corrective feedback.",
+      "Led UI development for a product, from Figma prototyping through the development and deployment of a Flask application.",
+      "Reduced pose-keypoint jitter by 35% while validating 5 Army drill postures using MediaPipe, OpenCV, and Python.",
+      "Enabled real-time feedback by classifying 15+ keypoints using joint-angle calculations, visibility, and live error feedback.",
+      "Achieved 98% detection accuracy and reduced background noise by engineering a YOLOv8/PyTorch auto-cropping pipeline, deployed as an offline Flask application for government use.",
     ],
-    tags: ["OpenCV", "MediaPipe", "YOLOv8", "Flask"],
+    tags: ["Figma", "MediaPipe", "YOLOv8", "Flask"],
   },
   {
     role: "Data Scientist",
     org: "Beyond Business Travel (Remote · Ireland)",
-    date: "Aug — Dec 2022",
+    date: "Aug - Dec 2022",
     location: "TUS, Ireland",
     region: "india",
     bullets: [
-      "Automated multi‑format invoice extraction using OCR + NLP at 98% accuracy — saving 6 hours of manual work daily.",
-      "Designed rule‑based validation and statistical outlier detection to flag pricing inconsistencies, reducing billing errors by 70%.",
+      "Saved 8+ staff-hours daily by replacing manual invoice entry with a React and Django document-automation website.",
+      "Achieved 98% extraction accuracy using Python, pypdf, OCR, layout-aware parsing, and automated validation.",
     ],
-    tags: ["OCR", "NLP", "Python"],
+    tags: ["React", "Django", "OCR", "pypdf"],
   },
 ];
 
@@ -113,18 +114,21 @@ export function Experience() {
         className="pointer-events-none absolute -top-10 left-0 select-none md:-left-4"
       >
         <span className="font-serif text-[34vw] leading-none text-accent/[0.05] md:text-[18vw]">
-          03
+          02
         </span>
       </Parallax>
       <div className="relative max-w-7xl mx-auto">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <h2 className="text-[11px] uppercase tracking-[0.22em] text-accent mb-5">
-              03 / Experience
+              02 / Experience
             </h2>
             <p className="font-serif text-3xl md:text-5xl leading-tight">The journey, so far.</p>
           </div>
-          <div role="tablist" className="inline-flex p-1 rounded-full bg-canvas-alt ring-1 ring-rule">
+          <div
+            role="tablist"
+            className="inline-flex p-1 rounded-full bg-canvas-alt ring-1 ring-rule"
+          >
             {filters.map((f) => (
               <button
                 key={f.id}
@@ -133,7 +137,10 @@ export function Experience() {
                 onClick={() => setFilter(f.id)}
                 style={
                   filter === f.id
-                    ? { background: "linear-gradient(120deg, var(--accent), var(--accent-2))", color: "var(--accent-foreground)" }
+                    ? {
+                        background: "linear-gradient(120deg, var(--accent), var(--accent-2))",
+                        color: "var(--accent-foreground)",
+                      }
                     : undefined
                 }
                 className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] rounded-full transition-colors ${
@@ -160,14 +167,12 @@ export function Experience() {
               >
                 <details className="py-7 md:py-9 px-1 md:px-2">
                   <summary className="list-none cursor-pointer flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
-                    <span className="font-mono text-xs text-muted md:w-44 shrink-0">
-                      {r.date}
-                    </span>
+                    <span className="font-mono text-xs text-muted md:w-44 shrink-0">{r.date}</span>
                     <div className="flex-1">
                       <h3 className="font-serif text-2xl md:text-3xl group-hover:text-accent transition-colors">
                         {r.role}{" "}
                         <span className="text-ink-soft font-sans text-base md:text-lg italic">
-                          — {r.org}
+                          - {r.org}
                         </span>
                       </h3>
                     </div>
@@ -186,7 +191,10 @@ export function Experience() {
                     </ul>
                     <ul className="md:col-span-2 flex md:flex-col flex-wrap gap-2 text-[11px]">
                       {r.tags.map((t) => (
-                        <li key={t} className="px-2.5 py-1 rounded-full bg-canvas-alt ring-1 ring-rule text-ink-soft">
+                        <li
+                          key={t}
+                          className="px-2.5 py-1 rounded-full bg-canvas-alt ring-1 ring-rule text-ink-soft"
+                        >
                           {t}
                         </li>
                       ))}

@@ -11,7 +11,7 @@ export function About() {
           <p className="font-serif text-3xl md:text-5xl leading-[1.15] text-balance">
             I work where{" "}
             <span className="italic text-accent">machine learning</span> meets
-            human consequences — clinical decisions, behavioral data, scientific
+            human consequences - clinical decisions, behavioral data, scientific
             inference. My favourite problems are the ones where{" "}
             <span className="italic">why</span> matters as much as{" "}
             <span className="italic">what</span>.
@@ -19,14 +19,14 @@ export function About() {
           <div className="mt-10 grid sm:grid-cols-2 gap-8 text-ink-soft leading-relaxed">
             <p>
               Today I'm a Data Scientist at Michigan Medicine, building
-              domain‑specific RAG systems and causal extraction pipelines that
+              domain-specific RAG systems and causal extraction pipelines that
               help researchers reason over thousands of papers and unstructured
               clinical text.
             </p>
             <p>
-              Before Ann Arbor, I shipped pose‑estimation systems for the Indian
+              Before Ann Arbor, I shipped pose-estimation systems for the Indian
               Ministry of Defence, OCR/NLP invoice automation for an Irish
-              travel firm, and reinforcement‑learning patient engagement studies
+              travel firm, and reinforcement-learning patient engagement studies
               with UM Precision Health.
             </p>
           </div>

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /**
- * LiquidEther — a GPU fluid simulation (advection → viscosity → pressure
+ * LiquidEther - a GPU fluid simulation (advection → viscosity → pressure
  * projection) rendered to a transparent canvas, with velocity magnitude mapped
  * through a colour palette. Adapted from the React Bits component.
  *
@@ -15,8 +15,8 @@ import * as THREE from "three";
  *    onto the running instance.
  *  - Bails out cleanly when WebGL is unavailable instead of throwing.
  *
- * The canvas never captures pointer events — the mouse is tracked on `window`
- * and tested against the container's bounding box — so this can sit behind
+ * The canvas never captures pointer events - the mouse is tracked on `window`
+ * and tested against the container's bounding box - so this can sit behind
  * real content as a background without stealing clicks.
  */
 
@@ -46,7 +46,7 @@ export type LiquidEtherProps = {
   dt?: number;
   BFECC?: boolean;
   /**
-   * Per-frame velocity decay, 0–1. The upstream simulation has no dissipation
+   * Per-frame velocity decay, 0-1. The upstream simulation has no dissipation
    * term, so a continuously moving pointer pumps in energy that never leaves
    * and the field saturates to a flat slab of colour within a couple of
    * seconds. Anything below 1 lets it relax back to calm; 1 is upstream's
@@ -146,7 +146,7 @@ export default function LiquidEther({
   };
 
   // A stable key so a fresh `colors` array literal each render doesn't remount
-  // the simulation — only an actual palette change does.
+  // the simulation - only an actual palette change does.
   const colorKey = colors.join(",");
 
   useEffect(() => {
@@ -167,7 +167,7 @@ export default function LiquidEther({
       for (let i = 0; i < w; i++) {
         // Read the colour back out in sRGB. THREE.Color stores in the linear
         // working space, so upstream's `c.r/g/b` wrote linear values into an
-        // 8-bit texture that the raw shader then passes through untouched —
+        // 8-bit texture that the raw shader then passes through untouched -
         // which renders every stop noticeably darker and duller than asked for.
         const hex = new THREE.Color(arr[i]).getHex(THREE.SRGBColorSpace);
         data[i * 4 + 0] = (hex >> 16) & 255;
@@ -536,7 +536,7 @@ export default function LiquidEther({
     void main(){
     vec2 vel = texture2D(velocity, uv).xy;
     float lenv = clamp(length(vel), 0.0, 1.0);
-    // Real velocities cluster low in the 0–1 range, so a linear lookup only
+    // Real velocities cluster low in the 0-1 range, so a linear lookup only
     // ever samples the first stop. This spreads them across the ramp: wisps
     // stay on stop 1, the body of the motion reaches stop 2, peaks hit stop 3.
     vec3 c = texture2D(palette, vec2(pow(lenv, 0.55), 0.5)).rgb;
@@ -1135,7 +1135,7 @@ export default function LiquidEther({
         // The renderer runs with autoClear off (the simulation passes manage
         // their own targets), so the output quad would composite over the
         // previous frame instead of replacing it. Alpha then accumulates
-        // towards 1 and the canvas fills in as an opaque slab — harmless on
+        // towards 1 and the canvas fills in as an opaque slab - harmless on
         // the demo's black page, fatal for a transparent background layer.
         Common.renderer.clear();
         Common.renderer.render(this.scene, this.camera);
@@ -1266,7 +1266,7 @@ export default function LiquidEther({
         },
       });
     } catch {
-      return; // WebGL context creation failed — leave the fallback visible
+      return; // WebGL context creation failed - leave the fallback visible
     }
 
     webglRef.current = webgl;

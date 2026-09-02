@@ -46,14 +46,14 @@ function Row({ items }: { items: string[] }) {
 }
 
 /**
- * VelocityMarquee — a continuously drifting strip whose speed and direction
+ * VelocityMarquee - a continuously drifting strip whose speed and direction
  * respond to scroll velocity: scroll down and it races ahead, scroll up and
  * it reverses, sit still and it idles. Gives the page a tactile, scroll-aware
  * feel. Falls back to a static, readable row under reduced-motion.
  */
 export function VelocityMarquee({
   items,
-  baseVelocity = 2,
+  baseVelocity = 0.75,
 }: {
   items: string[];
   baseVelocity?: number;
@@ -66,8 +66,9 @@ export function VelocityMarquee({
     damping: 50,
     stiffness: 400,
   });
-  // Map raw scroll velocity into a bounded multiplier on the base drift.
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+  // Map raw scroll velocity into a bounded multiplier on the base drift. Kept
+  // low so the strip reads as an ambient drift rather than a ticker.
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2.5], {
     clamp: false,
   });
 

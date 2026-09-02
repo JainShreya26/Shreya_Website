@@ -54,7 +54,7 @@
   --muted-foreground: oklch(0.45 0.008 60);
   --rule:             oklch(0.88 0.005 60);
 
-  /* Signature palette — indigo primary with a supporting spectrum.
+  /* Signature palette - indigo primary with a supporting spectrum.
      Tuned for AA contrast on the warm canvas while staying refined. */
   --accent:           oklch(0.52 0.17 282);   /* indigo / violet */
   --accent-foreground: oklch(0.985 0.003 80);

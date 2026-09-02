@@ -7,7 +7,7 @@ import { HeroFluid } from "./HeroFluid";
 const skills = [
   "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
   "Causal Inference", "DECI", "DoWhy", "NetworkX", "OpenCV", "MediaPipe",
-  "YOLOv8", "spaCy", "LoRA", "Scikit‑learn", "SQL", "Power BI", "Tableau",
+  "YOLOv8", "spaCy", "LoRA", "Scikit-learn", "SQL", "Power BI", "Tableau",
   "R", "Time Series", "NLP", "Computer Vision",
 ];
 
@@ -20,14 +20,17 @@ export function Hero() {
   ];
 
   return (
+    // Fills the viewport so the marquee lands on the fold: the skills strip is
+    // the last thing visible before the reader has to scroll for About.
     <section
       id="top"
-      className="relative px-6 md:px-10 pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden"
+      className="relative flex min-h-svh flex-col px-6 md:px-10 pt-20 md:pt-32 overflow-hidden"
     >
       <HeroFluid />
 
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
-        <div className="md:col-span-8 flex flex-col gap-3.5">
+      <div className="relative z-10 flex flex-1 items-center py-6 md:py-14">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-center">
+          <div className="md:col-span-8 flex flex-col gap-3.5">
           <h1 className="font-serif text-[clamp(1.6rem,4.1vw,3.75rem)] leading-[1.05] -tracking-[0.01em] text-balance">
             {headlineWords.map((line, i) => (
               <motion.span
@@ -50,7 +53,7 @@ export function Hero() {
             I&apos;m <strong className="text-ink font-medium">Shreya Jain</strong>, a Data Scientist
             at Michigan Medicine working at the intersection of LLMs, causal
             inference, and healthcare. I build research tools that translate
-            messy clinical and behavioral data into interpretable, decision‑grade
+            messy clinical and behavioral data into interpretable, decision-grade
             intelligence.
           </p>
 
@@ -83,7 +86,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-4 relative"
         >
-          <Parallax speed={0.12} className="relative w-[230px] sm:w-[260px] md:w-full md:max-w-[300px] mx-auto md:ml-auto md:mr-0">
+          <Parallax speed={0.12} className="relative w-[200px] sm:w-[240px] md:w-full md:max-w-[300px] mx-auto md:ml-auto md:mr-0">
             {/* thin offset accent frame for depth */}
             <div
               aria-hidden
@@ -97,10 +100,11 @@ export function Hero() {
             />
           </Parallax>
         </motion.figure>
+        </div>
       </div>
 
-      {/* Skills marquee — drifts with scroll velocity */}
-      <div className="relative z-10 mt-12 md:mt-16 border-y border-rule py-5 md:py-7">
+      {/* Skills marquee - drifts with scroll velocity */}
+      <div className="relative z-10 mt-auto border-y border-rule py-5 md:py-7">
         <VelocityMarquee items={skills} />
       </div>
     </section>

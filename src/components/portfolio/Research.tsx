@@ -4,21 +4,41 @@ const papers = [
   {
     badge: "ACM 2023",
     title:
-      "Offer and Deal‑Quality Prediction using Machine Learning and a Fuzzy Approach: A Shark Tank India Case Study",
+      "Offer and Deal-Quality Prediction using Machine Learning and a Fuzzy Approach: A Shark Tank India Case Study",
     authors: "Shreya Jain, Atharva Parikh",
     venue: "Proceedings of the ACM Web Conference 2023",
     href: "https://dl.acm.org/doi/abs/10.1145/3590837.3590891",
   },
   {
     badge: "IEEE 2024",
-    title:
-      "Empowering India's Climate Action: Harnessing Blockchain for Carbon Trading",
+    title: "Empowering India's Climate Action: Harnessing Blockchain for Carbon Trading",
     authors: "Shreya Jain, Atharva Parikh, Riddhi Pawar, Shruti Jawale",
     venue:
       "2024 IEEE International Conference on Blockchain and Distributed Systems Security (ICBDS)",
     href: "https://ieeexplore.ieee.org/document/10837382",
   },
+  {
+    badge: "medRxiv 2026",
+    title:
+      "Development and Evaluation of Artificial Intelligence–Assisted Decision Support System for Public Health Emergency Classification and Escalation in Kenya",
+    authors:
+      "Mark Nanyingi, Eric Osoro, Geoffrey H. Siwo, Isaac Ngere, Samuel Kadivane, James Magige, Joseph Kamau, Shreya Jain, Bryan O. Nyawanda, Joseph Njoroge, Ian Njeru, Kadondi Kasera, Victoria Kanana, Kamene Kimenye",
+    venue: "medRxiv preprint · Posted July 10, 2026",
+    href: "https://www.medrxiv.org/content/10.64898/2026.07.07.26357475v1",
+  },
 ];
+
+function Authors({ names }: { names: string }) {
+  const [before, after] = names.split("Shreya Jain");
+
+  return (
+    <>
+      {before}
+      <strong className="font-medium text-canvas">Shreya Jain</strong>
+      {after}
+    </>
+  );
+}
 
 export function Research() {
   return (
@@ -36,12 +56,12 @@ export function Research() {
                 05 / Publications
               </h2>
               <p className="font-serif text-3xl md:text-4xl leading-tight text-balance">
-                Peer‑reviewed work at the <span className="italic">edges</span>
-                {" "}of ML, fuzzy systems, and applied research.
+                Research at the <span className="italic">edges</span> of ML, AI-assisted decision
+                support, and applied systems.
               </p>
               <p className="mt-6 text-sm text-canvas/60 max-w-xs">
-                Published in international venues with collaborators across
-                India and the US.
+                Peer-reviewed publications and preprint work with collaborators across India, Kenya,
+                and the US.
               </p>
             </Reveal>
 
@@ -67,8 +87,7 @@ export function Research() {
                       {p.title}
                     </h3>
                     <p className="mt-3 text-sm text-canvas/70">
-                      <strong className="text-canvas font-medium">Shreya Jain</strong>
-                      {p.authors.replace("Shreya Jain", "")}
+                      <Authors names={p.authors} />
                     </p>
                     <p className="mt-1 text-sm italic text-canvas/60">{p.venue}</p>
                     <a

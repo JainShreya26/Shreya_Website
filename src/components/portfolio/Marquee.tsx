@@ -1,7 +1,7 @@
 const skills = [
   "Python", "PyTorch", "TensorFlow", "LangChain", "RAG", "LLMs",
   "Causal Inference", "DECI", "DoWhy", "NetworkX", "OpenCV", "MediaPipe",
-  "YOLOv8", "spaCy", "LoRA", "Scikit‑learn", "SQL", "Power BI", "Tableau",
+  "YOLOv8", "spaCy", "LoRA", "Scikit-learn", "SQL", "Power BI", "Tableau",
   "R", "Time Series", "NLP", "Computer Vision",
 ];
 

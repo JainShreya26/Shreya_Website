@@ -13,17 +13,17 @@ import { Layered } from "@/components/portfolio/Layered";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shreya D Jain — AI Engineer & Data Scientist" },
+      { title: "Shreya D Jain - AI Engineer & Data Scientist" },
       {
         name: "description",
         content:
-          "Portfolio of Shreya D Jain — AI Engineer & Data Scientist at Michigan Medicine. RAG, LLMs, causal inference, NLP, and healthcare ML.",
+          "Portfolio of Shreya D Jain - AI Engineer & Data Scientist at Michigan Medicine. RAG, LLMs, causal inference, NLP, and healthcare ML.",
       },
-      { property: "og:title", content: "Shreya D Jain — AI Engineer & Data Scientist" },
+      { property: "og:title", content: "Shreya D Jain - AI Engineer & Data Scientist" },
       {
         property: "og:description",
         content:
-          "RAG, LLMs, causal inference, NLP, and healthcare ML — selected work, experience, and publications.",
+          "RAG, LLMs, causal inference, NLP, and healthcare ML - selected work, experience, and publications.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -42,14 +42,11 @@ export const Route = createFileRoute("/")({
             { "@type": "CollegeOrUniversity", name: "Savitribai Phule Pune University" },
           ],
           worksFor: { "@type": "Organization", name: "Michigan Medicine" },
-          sameAs: [
-            "https://linkedin.com/in/shreyadjain/",
-            "https://github.com/JainShreya26",
-          ],
+          sameAs: ["https://linkedin.com/in/shreyadjain/", "https://github.com/JainShreya26"],
           url: "https://shreyadjain.com",
           knowsAbout: [
             "Large Language Models",
-            "Retrieval‑Augmented Generation",
+            "Retrieval-Augmented Generation",
             "Causal Inference",
             "Natural Language Processing",
             "Computer Vision",
@@ -68,13 +65,29 @@ function Index() {
       <ScrollProgress />
       <Nav />
       <main className="relative">
-        <Layered z={1}><Hero /></Layered>
-        <Layered overlap z={2}><About /></Layered>
-        <Layered z={3}><Work /></Layered>
-        <Layered overlap z={4}><Experience /></Layered>
-        <Layered z={5}><Education /></Layered>
-        <Layered overlap z={6}><Research /></Layered>
-        <Layered overlap z={7}><Contact /></Layered>
+        <Layered z={1}>
+          <Hero />
+        </Layered>
+        {/* No `overlap` here: the hero owns the full first screen, so About
+            must start below the fold instead of riding up over the marquee. */}
+        <Layered z={2}>
+          <About />
+        </Layered>
+        <Layered overlap z={3}>
+          <Experience />
+        </Layered>
+        <Layered z={4}>
+          <Work />
+        </Layered>
+        <Layered z={5}>
+          <Education />
+        </Layered>
+        <Layered overlap z={6}>
+          <Research />
+        </Layered>
+        <Layered overlap z={7}>
+          <Contact />
+        </Layered>
       </main>
     </div>
   );

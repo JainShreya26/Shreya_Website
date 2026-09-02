@@ -2,7 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef, type CSSProperties, type ReactNode } from "react";
 
 /**
- * Parallax — translates its children as the element passes through the
+ * Parallax - translates its children as the element passes through the
  * viewport, so it scrolls at a different rate than the surrounding content.
  *
  * `speed` controls depth: positive values drift the element *down* relative
@@ -25,7 +25,7 @@ export function Parallax({
   const reduce = useReducedMotion();
 
   // 0 when the element's top reaches the viewport bottom, 1 when its bottom
-  // reaches the viewport top — i.e. progress across its full visible pass.
+  // reaches the viewport top - i.e. progress across its full visible pass.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
