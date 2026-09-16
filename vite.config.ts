@@ -9,7 +9,16 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // Nitro builds the TanStack Start server for Vercel Functions.
 export default defineConfig({
-  nitro: { preset: "vercel" },
+  nitro: {
+    preset: "vercel",
+    // Lovable's wrapper defaults to dist/server and dist/client, so restore
+    // Vercel's Build Output API layout for its function and static assets.
+    output: {
+      dir: ".vercel/output",
+      serverDir: ".vercel/output/functions/__server.func",
+      publicDir: ".vercel/output/static",
+    },
+  },
   tanstackStart: {
     server: { entry: "server" },
   },
