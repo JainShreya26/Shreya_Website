@@ -7,9 +7,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// Nitro builds the deployable Cloudflare Worker and redirects Wrangler to it.
+// Nitro builds the TanStack Start server for Vercel Functions.
 export default defineConfig({
-  nitro: true,
+  nitro: { preset: "vercel" },
   tanstackStart: {
     server: { entry: "server" },
   },
