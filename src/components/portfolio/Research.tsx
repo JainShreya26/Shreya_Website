@@ -2,6 +2,15 @@ import { Reveal } from "./Reveal";
 
 const papers = [
   {
+    badge: "medRxiv 2026",
+    title:
+      "Development and Evaluation of Artificial Intelligence–Assisted Decision Support System for Public Health Emergency Classification and Escalation in Kenya",
+    authors:
+      "Mark Nanyingi, Eric Osoro, Geoffrey H. Siwo, Isaac Ngere, Samuel Kadivane, James Magige, Joseph Kamau, Shreya Jain, Bryan O. Nyawanda, Joseph Njoroge, Ian Njeru, Kadondi Kasera, Victoria Kanana, Kamene Kimenye",
+    venue: "medRxiv preprint · Posted July 10, 2026",
+    href: "https://www.medrxiv.org/content/10.64898/2026.07.07.26357475v1",
+  },
+  {
     badge: "ACM 2023",
     title:
       "Offer and Deal-Quality Prediction using Machine Learning and a Fuzzy Approach: A Shark Tank India Case Study",
@@ -16,15 +25,6 @@ const papers = [
     venue:
       "2024 IEEE International Conference on Blockchain and Distributed Systems Security (ICBDS)",
     href: "https://ieeexplore.ieee.org/document/10837382",
-  },
-  {
-    badge: "medRxiv 2026",
-    title:
-      "Development and Evaluation of Artificial Intelligence–Assisted Decision Support System for Public Health Emergency Classification and Escalation in Kenya",
-    authors:
-      "Mark Nanyingi, Eric Osoro, Geoffrey H. Siwo, Isaac Ngere, Samuel Kadivane, James Magige, Joseph Kamau, Shreya Jain, Bryan O. Nyawanda, Joseph Njoroge, Ian Njeru, Kadondi Kasera, Victoria Kanana, Kamene Kimenye",
-    venue: "medRxiv preprint · Posted July 10, 2026",
-    href: "https://www.medrxiv.org/content/10.64898/2026.07.07.26357475v1",
   },
 ];
 
